@@ -166,10 +166,20 @@ var App = React.createClass({
     })
   },
   viewChanged: function(view) {
-    // View is either "latest" (movies sorted by release), "alpha" (movies
-    // sorted A-Z), or "map" (the data visualized)
-    // We should probably do the sorting and setting of movies in state here.
-    // You should really look at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+    if(view==='latest'){
+      return(
+        this.setState({
+          currentView: movieData.sort(this.movieCompareByReleased)
+        })
+      )
+    }
+    if(view==='alpha'){
+      return(
+        this.setState({
+          currentView: movieData.sort(this.movieCompareByTitle)
+        })
+      )
+    }
     this.setState({
       currentView: view
     })
